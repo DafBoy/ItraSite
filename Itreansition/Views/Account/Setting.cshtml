@@ -1,0 +1,8 @@
+﻿@model Itreansition.ViewModels.PathModel
+@{
+    ViewData["Title"] = "Setting";
+}
+<form class="form-horizontal" asp-controller="Account" asp-action="Setting">
+    <input type="text" asp-for="PathFile" value="Hello" />
+    <input class="myButton" id="buttonSizeEnter" type="submit" value="Папку" />
+</form>

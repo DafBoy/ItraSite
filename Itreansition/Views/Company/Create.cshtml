@@ -1,0 +1,64 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-md-8">
+        <div class="card myBlock">
+            <div class="card-header">Create Company</div>
+            <div class="card-body">
+
+                <form class="form-horizontal" asp-controller="Company" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label for="Name" class="cols-sm-2 control-label">Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <input class="form-control" asp-for="Name" />
+                            </div>
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="NeedMoney" class="cols-sm-2 control-label">NeedMoney"</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <input class="form-control" asp-for="NeedMoney" />
+                            </div>
+                            <span asp-validation-for="NeedMoney"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="BrieflyAbout" class="cols-sm-2 control-label">BrieflyAbout</label>
+                        <div class="cols-sm-10"style="height:100px">
+                            <div class="input-group">
+                                <textarea  class="form-control" style="height:100px" asp-for="BrieflyAbout" ></textArea>
+                            </div>
+                            <span asp-validation-for="BrieflyAbout"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="About" class="cols-sm-2 control-label">About</label>
+
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <textarea class="form-control" asp-for="About" ></textArea>
+                            </div>
+                            <span asp-validation-for="About"></span>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+
+                        <input type="submit" value="Create" class="myButton  btn-lg btn-block login-button" />
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

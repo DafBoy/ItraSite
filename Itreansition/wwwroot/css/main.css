@@ -1,0 +1,222 @@
+/*Тесты*/
+/*div{
+  border: 1px solid black;
+}*/
+/**/
+
+.img-company{
+  /* The image used */
+
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.img-company2{
+  /* The image used */
+  background-image: url(../img/1.png);
+
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.step{
+  height: 200px;
+}
+#Compani{
+  height:auto;
+  max-height: 1600px;
+  width: auto;
+}
+#heads{
+  margin-top: 50px;
+}
+body, html {
+  height: 100%;
+  min-width: 720;
+}
+.bg-main {
+  /* The image used */
+  background-image: url(../img/head.jpg);
+
+  /* Half height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-topCompani{
+  /* The image used */
+  background-image: url(../img/topLine.png);
+
+  /* Half height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.bg-newCompani{
+  /* The image used */
+  background-image: url(../img/newLine.png);
+
+  /* Half height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.autorization{
+  background-color: white;
+}
+#block-autorization{
+  position: relative;
+  width: 300px;
+  height:400px;
+
+  margin: auto;
+    margin-top:100px;
+}
+.center{
+position: absolute;
+top: 50%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%)
+}
+.panel{
+  min-width: 700px;
+}
+
+.search {
+
+    width: 330px;
+    height: 30px;
+    position: relative;
+    right: 20px;
+    float: left;
+    margin-left: 10px;
+    line-height: 22px;
+}
+
+    .search input {
+        position: absolute;
+        width: 0px;
+        float: Left;
+        margin-left: 10px;
+        -webkit-transition: all 0.7s ease-in-out;
+        -moz-transition: all 0.7s ease-in-out;
+        -o-transition: all 0.7s ease-in-out;
+        transition: all 0.7s ease-in-out;
+        height: 30px;
+        line-height: 18px;
+        padding: 0 2px 0 2px;
+        border-radius:1px;
+    }
+
+        .search:hover input, .search input:focus {
+
+            width: 250px;
+            margin-left: 60px;
+            background: #fff; /* Цвет фона */
+            border: 2px solid #B7CFE2; /* Белая рамка */
+            border-radius: 10px; /* Радиус скругления */
+        }
+.imgblock {
+  position: relative;
+  display: inline-block;
+}
+
+/*КНОПКИ----------------------ТЕКСТ------------------*/
+.textColorWhite{
+  color: white;
+}
+#buttonSizeEnter{
+  width: 180px;
+}
+
+.wide {
+  width: 100%;
+  height: auto;
+}
+.myButton{
+  color: white;
+  transform: skew(-10deg);
+    border-radius: 10px; /* Радиус скругления */
+    background-color:#343A40;
+    border-color: #B8C2CB;
+}
+.myButton:hover{
+    color: black;
+    background-color:#343A40;
+    border-radius: 5px;
+    border-color: white;
+}
+.fieldText{
+  background: #fff; /* Цвет фона */
+  border: 2px solid #F4B400; /* Белая рамка */
+    border-color: #B8C2CB;  #F4B400
+  border-radius: 10px; /* Радиус скругления */
+}
+#myText{
+  position: relative;
+  float: left;
+  background-color: #B8C2CB;
+  opacity: 0.4;
+  color: white;
+  border-radius: 10px;
+  font-weight: 900;
+  font-style: italic;
+
+
+  font-size: 35px;
+}
+/*-----------------БЛОК------------------*/
+.myBlock{
+  border-style:double;
+  border-radius: 5px;
+  border: 7px double #808080;
+  background:#fff;
+
+}
+.company-blocks{
+  border-style:double;
+  border-radius: 10px;
+  border: 3px double #808080;
+  background:#fff;
+  min-width: 210px;
+  max-width: 350px;
+  min-height: 500px;
+  max-height: 500px;
+  margin:10px;
+}
+.company-block-1{
+  max-width: 340px;
+  min-width: 200px;
+  max-height: 225px;
+  min-height: 180px;
+}
+.company-block-2{
+  max-width: 350px;
+  min-width: 200px;
+  max-height: 260px;
+  min-height: 180px;
+}
+
+
+ #imgblock {
+   -o-object-fit: cover;
+   object-fit: cover;
+   width: 350px;
+   height: 225px;
+ }

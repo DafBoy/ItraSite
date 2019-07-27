@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Company>
+
+@{
+    ViewBag.Title = "Все смартфоны";
+}
+<div class="row step"></div>
+
+<div class="row m-1">
+    <div class="col-12" id="Compani">
+        <div class="bg-topCompani">
+            <div id="carouselTopCompany" class="my-carousel carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @for (var i = 0; i < ViewBag.TopList.Count; i += 3)
+                    {
+                        string a;
+                        if (i == 0) {a = "active"; }
+                        else { a = ""; }
+
+                            <div class="carousel-item @a "> 
+                            <div class="row justify-content-center">
+                            @for (var j = i; (j < ViewBag.TopList.Count) && (j < (i + 3)); j++)
+                            {
+                                <div class="col-lg-4 col-sm-9 company-blocks m-1">
+                                <div class="row company-block-1 img-company" style="background-image:url(@ViewBag.TopList[j].Logo)"></div>
+                                <div class="row company-block-2">
+                                   <div class="col-12 text-center"><p class="h3">@ViewBag.TopList[j].Name</p></div>
+                                   <div class="m-2">@ViewBag.TopList[j].BrieflyAbout</div>
+                                </div>
+                                </div>
+                                 }
+                            </div>
+                            </div>
+
+                  }
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-1">
+                        <a href="#carouselTopCompany" class="carousel-controler-prev" data-slide="prev"><button type="button" class="myButton wide">Prev</button></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="#carouselTopCompany" class="carousel-controler-next" data-slide="next">  <button type="button" class="myButton wide">Next</button></a>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+    </div>
+
+<div class="row step"></div>
+
+<div class="row m-1">
+    <div class="col-12" id="Compani">
+        <div class="bg-newCompani">
+            <div id="carouselNewCompany" class="my-carousel carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @for (var i = 0; i < ViewBag.TopList.Count; i += 3)
+                    {
+                        string a;
+                        if (i == 0) { a = "active"; }
+                        else { a = ""; }
+
+                        <div class="carousel-item @a ">
+                            <div class="row justify-content-center">
+                                @for (var j = i; (j < ViewBag.TopList.Count) && (j < (i + 3)); j++)
+                                {
+                                    <div class="col-lg-4 col-sm-9 company-blocks m-1">
+                                        <div class="row company-block-1 img-company" style="background-image:url(@ViewBag.TopList[j].Logo)"></div>
+                                        <div class="row company-block-2">
+                                            <div class="col-12 text-center"><p class="h3">@ViewBag.TopList[j].Name</p></div>
+                                            <div class="">@ViewBag.TopList[j].BrieflyAbout</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-1">
+                        <a href="#carouselNewCompany" class="carousel-controler-prev" data-slide="prev"><button type="button" class="myButton wide">Prev</button></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="#carouselNewCompany" class="carousel-controler-next" data-slide="next">  <button type="button" class="myButton wide">Next</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

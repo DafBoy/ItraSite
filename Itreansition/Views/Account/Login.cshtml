@@ -1,0 +1,34 @@
+﻿@model EmailApp.ViewModels.LoginModel
+
+<h2>Вход в приложение</h2>
+<div class="myBlock" id="block-autorization">
+    <fieldset>
+
+        <form method="post" class="center" asp-controller="Account" asp-action="Login"
+              asp-route-returnUrl="@Model.ReturnUrl">
+
+            <div>
+                <label asp-for="Email"></label><br />
+                <input asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label><br />
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <label asp-for="RememberMe"></label><br />
+                <input asp-for="RememberMe" />
+            </div>
+
+            <div>
+                <input class="myButton" id="buttonSizeEnter" type="submit" value="Войти" />
+            </div>
+            <div><a href="#">Забыли пароль?</a></div>
+        </form>
+
+    </fieldset>
+    <div asp-validation-summary="ModelOnly"></div>
+
+</div>
