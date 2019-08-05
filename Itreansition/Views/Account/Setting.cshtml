@@ -1,8 +1,31 @@
-﻿@model Itreansition.ViewModels.PathModel
+﻿@model User
 @{
     ViewData["Title"] = "Setting";
 }
-<form class="form-horizontal" asp-controller="Account" asp-action="Setting">
-    <input type="text" asp-for="PathFile" value="Hello" />
-    <input class="myButton" id="buttonSizeEnter" type="submit" value="Папку" />
-</form>
+
+<h2>@ViewData["Title"]</h2>
+
+@*<form class="form-horizontal" asp-controller="Account" asp-action="Setting" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="input-group">
+            <input class="form-control" asp-for="PhoneNumber" />
+        </div>
+            <input class="form-control" asp-for="Password" />
+        </div>
+        <span asp-validation-for="Password"></span>
+        <div class="form-group">
+            <label>Загрузить изображение</label>
+            <input type="file" name="LoadedFile" class="form-control" />
+            <input type="hidden" name="userName" value="" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Добавить" class="btn btn-default" />
+        </div>
+    </div>
+</form>*@
+
+@*@if (Model.PathFile!="")
+    {
+        <img src="@Url.Action("GetImage", new { id=@Model.PathFile})" />
+    }*@

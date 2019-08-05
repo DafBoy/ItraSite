@@ -1,0 +1,27 @@
+﻿
+    <script>
+        function funonload() {
+
+    setTimeout(function () {
+        location = "Index"
+    }, 3000);
+}
+    </script>
+
+<div class="container-fluid row justify-content-center" onload="funonload();" style="margin-top:10%;">
+    <div class="rof justify-content-center borderRidge"style="width:50%;min-height:100px;background-color:whitesmoke">
+        <div class="col-12" style="text-align:center;color:#4C2C12">
+            <h3><em>@ViewBag.message</em></h3>
+        </div>
+        <div class="col-12" style="text-align:center">
+            <h5>
+                You will be redirected to the main page in 3 seconds.
+            </h5>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    window.onload = funonload;
+</script>

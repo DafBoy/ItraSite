@@ -1,0 +1,92 @@
+﻿@model Itreansition.ViewModels.DonnateViewModel
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4" style="width:300px;margin-left:40%;margin-top:2%"><h1>@Model.Company.Name</h1></div>
+    </div>
+
+    <div class="row" style="margin-top:3%">
+        <div class="col-8 m-auto">
+            <div class="borderRidge" style="width:100%;background-color:whitesmoke">
+                <div class="flex-column">
+
+                    <form method="post" class="form-horizontal" asp-controller="Company" asp-action="Donnate" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group" style="text-align:center">
+                            <label for="Sum" class="cols-sm-2 control-label">  Enter donation amount</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <input  type="number" class="form-control" name="Sum" id="Sum" style="text-align:center" required/>
+
+                                </div>
+                                <div class="input-group">
+                                    <input type="hidden" name="idCompany" value=@Model.Company.Id />
+                                    <input type="hidden" name="idBonnus" id="idBonnus" value="-1" /> 
+                                    <input type="hidden"  name="userName" value=@User.Identity.Name />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <input type="submit" value="Donnate" id="submitDonnate" class="myButton m-auto  btn-lg btn-block login-button" style="width:90%"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+
+            @foreach (var bonus in Model.BonusList)
+            {
+                string idForModal = "modalId" + bonus.Id.ToString();
+
+
+                <div class="col-3" style="max-width:300px">
+                    <div style="background-image: url(@bonus.Image);" class="image-grid-cover">
+                        <a href="#" class="image-grid-clickbox" data-toggle="modal" data-target="#@idForModal"></a>
+                        <a href="#" class="cover-wrapper">@bonus.BonusName</a>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id=@idForModal tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="min-width:400px">
+                        <div class="modal-content" style="min-height:300px;">
+                            <div class="modal-header">
+                                <h5 class="modal-title">@bonus.BonusName</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid" style="height:200px">
+                                    <strong class="m-auto">@bonus.Description</strong>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 m-auto">
+                                        <button onclick="DonnateWithBonus(@bonus.Id,@bonus.Sum )" class="container-fluid myButton">Donate<br>@bonus.Sum$</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+            }
+        </div>
+    </div>
+</div>
+
+
+

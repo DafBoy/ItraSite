@@ -1,77 +1,34 @@
-/*Тесты*/
-/*div{
-  border: 1px solid black;
-}*/
-/**/
 
-.img-company{
-  /* The image used */
 
-  /* Half height */
-  height: 100%;
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.img-company2{
-  /* The image used */
-  background-image: url(../img/1.png);
 
-  /* Half height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .step{
   height: 200px;
 }
 #Compani{
   height:auto;
   max-height: 1600px;
-  width: auto;
+
 }
 #heads{
   margin-top: 50px;
 }
 body, html {
   height: 100%;
-  min-width: 720;
+  min-width: 700px;
 }
-.bg-main {
-  /* The image used */
-  background-image: url(../img/head.jpg);
 
-  /* Half height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .bg-topCompani{
-  /* The image used */
   background-image: url(../img/topLine.png);
-
-  /* Half height */
   height: 100%;
-  /* Center and scale the image nicely */
   background-position:center;
   background-repeat: no-repeat;
   background-size:cover;
 }
 .bg-newCompani{
-  /* The image used */
-  background-image: url(../img/newLine.png);
 
-  /* Half height */
+  background-image: url(../img/newLine.png);
   height: 100%;
-  /* Center and scale the image nicely */
   background-position:center;
   background-repeat: no-repeat;
   background-size:cover;
@@ -165,7 +122,7 @@ transform: translate(-50%, -50%)
 .fieldText{
   background: #fff; /* Цвет фона */
   border: 2px solid #F4B400; /* Белая рамка */
-    border-color: #B8C2CB;  #F4B400
+ border-color: #B8C2CB;
   border-radius: 10px; /* Радиус скругления */
 }
 #myText{
@@ -189,34 +146,269 @@ transform: translate(-50%, -50%)
   background:#fff;
 
 }
-.company-blocks{
-  border-style:double;
-  border-radius: 10px;
-  border: 3px double #808080;
-  background:#fff;
-  min-width: 210px;
-  max-width: 350px;
-  min-height: 500px;
-  max-height: 500px;
-  margin:10px;
+.borderRidge {
+    border:ridge;
+    border-color: #D0E1E1;
+    border-width:2px;
 }
-.company-block-1{
-  max-width: 340px;
-  min-width: 200px;
-  max-height: 225px;
-  min-height: 180px;
+.company-blocks {
+    max-width: 20%;
+    min-width: 200px;
+    min-height:400px;
+    margin: 2% 2% 0 0;
+    font-size: 12px;
+    background: white;
 }
-.company-block-2{
-  max-width: 350px;
-  min-width: 200px;
-  max-height: 260px;
-  min-height: 180px;
+.company-block-1 {
+    width: 100%;
+    height: 0;
+    padding-top: 70%;
 }
+.company-block-2 {
+    width: 100%;
+    height:auto;  
+    padding-top:5%;
+    text-align:center;
+    font-size:2em;
+    font-style:italic;
+    font-weight:800;
+}
+.company-block-3{
+  width:100%;
+  max-height:50%;
 
+}
+.img-company {
+    /* The image used */
+    /* Half height */
+    
+    /* Center and scale the image nicely */
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
 
  #imgblock {
    -o-object-fit: cover;
    object-fit: cover;
+   margin:auto;
    width: 350px;
    height: 225px;
  }
+
+.placement-bar {
+    color: black;
+    font-size: 20px;
+}
+
+
+#mainBlockComment { /*Блок где выводяться все коментарии к компании*/
+    height: 1000px; 
+    width: 100%; 
+    padding:10px;
+    background: #fff; 
+    border: 1px solid #C1C1C1; 
+    overflow-x: scroll; 
+    overflow-y: scroll; 
+}
+
+.like{ /*вид кнопок лайка*/
+    max-height:5px;
+    max-width:5px;
+}
+
+/*/////test*/
+#demo {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.green {
+    background-color: #6fb936;
+}
+
+.thumb {
+    margin-bottom: 30px;
+}
+
+.page-top {
+    margin-top: 85px;
+}
+
+
+img.zoom {
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out; 
+    -ms-transition: all .3s ease-in-out;
+}
+
+
+.transition {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    color: #000;
+}
+
+.modal-footer {
+    display: none;
+}
+
+/*//TESTTTTTTTTTTTTTT*/
+.image-grid-cover {
+    width: 100%;
+    background-size: cover;
+    min-height: 180px;
+    position: relative;
+    margin-bottom: 30px;
+    text-shadow: rgba(0,0,0,.8) 0 1px 0;
+    border-radius: 4px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image-grid-clickbox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background: rgba(0,0,0,.45);
+}
+
+.cover-wrapper {
+    font-size: 18px;
+    text-align: center;
+    display: block;
+    color: #fff;
+    text-shadow: rgba(0,0,0,.8) 0 1px 0;
+    z-index: 21;
+    position: relative;
+    top: 80px;
+}
+
+a, a:focus, a:hover {
+    text-decoration: none;
+    outline: 0;
+}
+
+/*//ДЛЯ ТАБЛИЦЫ*/
+table, td, th {
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    width: 70%
+}
+
+td {
+    text-align: left;
+}
+
+th {
+    height: 20px;
+}
+
+.test1 {
+    vertical-align: top;
+}
+
+.test2 {
+    vertical-align: bottom;
+}
+
+.post-header {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+a:visited {
+    color: #93291b;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline
+    }
+
+h1 {
+    font-family: ‘Enriqueta’, arial, serif;
+    line-height: 1.25;
+    margin: 0 0 10px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+    h1 a,
+    h1 a:visited {
+        color: #333333
+    }
+
+        h1 a:hover {
+            color: #93291b;
+            text-decoration: none;
+        }
+
+p {
+    color: #333333;
+    font-family: «Helvetica Neue»,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5625;
+    margin-bottom: 15px;
+}
+
+a.read-more {
+    background-color: #93291b;
+    border: 1px solid #333333;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 1px #93291b inset;
+    color: #f5f5f5;
+    padding: 5px;
+}
+
+    a.read-more:hover {
+        background-color: #be3523;
+        border-radius: 3px 3px 3px 3px;
+        text-decoration: none;
+    }
+
+input[type=file] {
+    background-color: #343A40;
+    transform: skew(-10deg);
+    color:whitesmoke;
+}

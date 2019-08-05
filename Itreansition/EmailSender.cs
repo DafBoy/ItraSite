@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Itreansition //Отправка Email при регистрации
+namespace Itreansition 
 {
     public class EmailSender
     { 
@@ -13,7 +13,7 @@ namespace Itreansition //Отправка Email при регистрации
     {
         var emailMessage = new MimeMessage();
 
-        emailMessage.From.Add(new MailboxAddress("Администрация сайта", "6dafboy6@mail.ru"));
+        emailMessage.From.Add(new MailboxAddress("Site administration", "6dafboy6@mail.ru"));
         emailMessage.To.Add(new MailboxAddress("", email));
         emailMessage.Subject = subject;
         emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)

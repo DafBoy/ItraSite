@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Itreansition.Models;
 using Microsoft.EntityFrameworkCore;
+using Itreansition.Services.CompanyService;
+using Itreansition.ViewModels;
 
 namespace Itreansition.Controllers
 {
@@ -18,14 +20,16 @@ namespace Itreansition.Controllers
 
         }
 
-        public async Task<IActionResult> Index()  //Вывод всех
+        public async Task<IActionResult> Index()  
         {
             ViewBag.TopList = await db.Companies.ToListAsync();
-
-            return View();
+            ListCompanyViewModel listCompanyViewModel = new ListCompanyViewModel();
+            listCompanyViewModel.NewCompaniesList = SortCompanyService.SortNew(db);
+            listCompanyViewModel.TopCompaniesList = SortCompanyService.SortRich(db);
+            return View(listCompanyViewModel);
         }                                      
 
-        public IActionResult Create()      //Создание
+        public IActionResult Create()      
         {
             return View();
         }
@@ -40,7 +44,7 @@ namespace Itreansition.Controllers
             db.Companies.Add(company);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }                             //Создание
+        }                             
 
         [HttpPost]
         public async Task<IActionResult> Edit(User phone)
@@ -48,11 +52,21 @@ namespace Itreansition.Controllers
             db.Users.Update(phone);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }                                        ////Редактирование
+        }                                       
+        public IActionResult Message(string message)
+        {
+            ViewBag.message = message;
+            return View();
+        }
 
 
+        public async Task<IActionResult> All()
+        {
+            IEnumerable<Company> companies = db.Companies;
+            return View(companies);
+        }
 
-        //КОнец моей вставки
+       
 
     }
 }

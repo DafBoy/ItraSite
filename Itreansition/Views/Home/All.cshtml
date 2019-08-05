@@ -1,0 +1,42 @@
+﻿@model  IEnumerable<Company>
+
+
+    <div class="container-fluid">
+        <div class="row justify-content-center" >
+            <div class="col-6" style="text-align:center;margin:100px;color:#4C2C12">
+                <h2>List all companies</h2>
+            </div>
+        </div>
+        <div class="row justify-content-around">
+            @foreach (var company in @Model)
+            {
+                <div class="col-xl-3 col-lg-3 col-md-5 col-sm-5">
+                    <div class="col-lg-2  company-blocks borderRidge">
+                        <a href="/Company?id=@company.Id">
+                            <div class="company-block-1 img-company" style="background-image:url(@company.Logo);border:dotted;border-color:black;width:100%;height:auto"></div>
+                        </a>
+                        <div class="company-block-2">
+                            <p class="h5">@company.Name</p>
+                        </div>
+                        <div class="row company-block-3">
+                            <div class="h-auto p-3" style="word-break:break-all">@company.BrieflyAbout</div>
+                        </div>
+
+                        <div style="width:100%; text-align:center">
+                            @Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(@company.CurrentMoney) /@Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(@company.NeedMoney)
+                        </div>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar placement-bar" role="progressbar" style="width:@company.GetPercentAmount()%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+
+                        <div class="coll-12" style="text-align:center;margin-bottom:0;">
+                            Creation date:@company.DateCreate.ToShortDateString()
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+    </div>

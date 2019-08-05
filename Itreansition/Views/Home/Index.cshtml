@@ -1,91 +1,127 @@
-﻿@model IEnumerable<Company>
+﻿@model Itreansition.ViewModels.ListCompanyViewModel
 
 @{
-    ViewBag.Title = "Все смартфоны";
+    ViewBag.Title = "Home";
 }
 <div class="row step"></div>
+    <div class="bg-topCompani" id="Compani">
+        <div id="carouselTopCompany" class="my-carousel carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @for (var i = 0; i < @Model.TopCompaniesList.Count; i += 3)
+                {
+                    string a;
+                    if (i == 0) { a = "active"; }
+                    else { a = ""; }
 
-<div class="row m-1">
-    <div class="col-12" id="Compani">
-        <div class="bg-topCompani">
-            <div id="carouselTopCompany" class="my-carousel carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    @for (var i = 0; i < ViewBag.TopList.Count; i += 3)
-                    {
-                        string a;
-                        if (i == 0) {a = "active"; }
-                        else { a = ""; }
-
-                            <div class="carousel-item @a "> 
-                            <div class="row justify-content-center">
-                            @for (var j = i; (j < ViewBag.TopList.Count) && (j < (i + 3)); j++)
+                    <div class="carousel-item @a ">
+                        <div class="row justify-content-center">
+                            @for (var j = i; (j < @Model.TopCompaniesList.Count) && (j < (i + 3)); j++)
                             {
-                                <div class="col-lg-4 col-sm-9 company-blocks m-1">
-                                <div class="row company-block-1 img-company" style="background-image:url(@ViewBag.TopList[j].Logo)"></div>
-                                <div class="row company-block-2">
-                                   <div class="col-12 text-center"><p class="h3">@ViewBag.TopList[j].Name</p></div>
-                                   <div class="m-2">@ViewBag.TopList[j].BrieflyAbout</div>
-                                </div>
-                                </div>
-                                 }
-                            </div>
-                            </div>
+                                <div class="col-lg-4  company-blocks borderRidge">
+                                    <a href="/Company?id=@Model.TopCompaniesList[j].Id">
+                                        <div class="company-block-1 img-company" style="background-image:url(@Model.TopCompaniesList[j].Logo);border:dotted;border-color:black;width:100%;height:auto"></div>
+                                    </a>
+                                    <div class="company-block-2">
+                                        <p class="h5">@Model.TopCompaniesList[j].Name</p>
+                                    </div>
+                                    <div class="row company-block-3">
+                                        <div class="h-auto p-3" style="word-break:break-all">@Model.TopCompaniesList[j].BrieflyAbout</div>
+                                    </div>
 
-                  }
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-1">
-                        <a href="#carouselTopCompany" class="carousel-controler-prev" data-slide="prev"><button type="button" class="myButton wide">Prev</button></a>
-                    </div>
-                    <div class="col-1">
-                        <a href="#carouselTopCompany" class="carousel-controler-next" data-slide="next">  <button type="button" class="myButton wide">Next</button></a>
-                    </div>
-                </div>
-            
-        </div>
-    </div>
-</div>
-    </div>
-
-<div class="row step"></div>
-
-<div class="row m-1">
-    <div class="col-12" id="Compani">
-        <div class="bg-newCompani">
-            <div id="carouselNewCompany" class="my-carousel carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    @for (var i = 0; i < ViewBag.TopList.Count; i += 3)
-                    {
-                        string a;
-                        if (i == 0) { a = "active"; }
-                        else { a = ""; }
-
-                        <div class="carousel-item @a ">
-                            <div class="row justify-content-center">
-                                @for (var j = i; (j < ViewBag.TopList.Count) && (j < (i + 3)); j++)
-                                {
-                                    <div class="col-lg-4 col-sm-9 company-blocks m-1">
-                                        <div class="row company-block-1 img-company" style="background-image:url(@ViewBag.TopList[j].Logo)"></div>
-                                        <div class="row company-block-2">
-                                            <div class="col-12 text-center"><p class="h3">@ViewBag.TopList[j].Name</p></div>
-                                            <div class="">@ViewBag.TopList[j].BrieflyAbout</div>
+                                    <div style="width:100%; text-align:center">
+                                        @Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(@Model.TopCompaniesList[j].CurrentMoney) /@Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(@Model.TopCompaniesList[j].NeedMoney)
+                                    </div>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar placement-bar" role="progressbar" style="width:@Model.TopCompaniesList[j].GetPercentAmount()%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                         </div>
                                     </div>
-                                }
-                            </div>
-                        </div>
 
-                    }
+                                    <div class="coll-12" style="text-align:center;margin-bottom:0;">
+                                        Creation date:@Model.TopCompaniesList[j].DateCreate.ToShortDateString()
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-1">
+                    <a href="#carouselTopCompany" class="carousel-controler-prev" data-slide="prev"><button type="button" class="myButton wide">Prev</button></a>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-1">
-                        <a href="#carouselNewCompany" class="carousel-controler-prev" data-slide="prev"><button type="button" class="myButton wide">Prev</button></a>
+                <div class="col-1">
+                    <a href="#carouselTopCompany" class="carousel-controler-next" data-slide="next">  <button type="button" class="myButton wide">Next</button></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row step"></div>
+
+    <div class="bg-newCompani" id="Compani">
+        <div id="carouselNewCompany" class="my-carousel carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @for (var i = 0; i < @Model.NewCompaniesList.Count; i += 3)
+                {
+                    string a;
+                    if (i == 0) { a = "active"; }
+                    else { a = ""; }
+
+                    <div class="carousel-item @a ">
+                        <div class="row justify-content-center">
+                            @for (var j = i; (j < @Model.NewCompaniesList.Count) && (j < (i + 3)); j++)
+                            {
+                            <div class="col-lg-4  company-blocks borderRidge">
+                                <a href="/Company?id=@Model.NewCompaniesList[j].Id">
+                                    <div class="company-block-1 img-company" style="background-image:url(@Model.NewCompaniesList[j].Logo);border:dotted;border-color:black;width:100%;height:auto"></div>
+                                </a>
+                                <div class="company-block-2">
+                                    <p class="h5">@Model.NewCompaniesList[j].Name</p>
+                                </div>
+                                <div class="row company-block-3">
+                                    <div class="h-auto p-3" style="word-break:break-all">@Model.NewCompaniesList[j].BrieflyAbout</div>
+                                </div>
+
+                                <div style="width:100%; text-align:center">
+                                    @Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(@Model.NewCompaniesList[j].CurrentMoney) /@Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(@Model.NewCompaniesList[j].NeedMoney)
+                                </div>  
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar placement-bar" role="progressbar" style="width:@Model.NewCompaniesList[j].GetPercentAmount()%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+
+                                <div class="coll-12" style="text-align:center;margin-bottom:0;">
+                                    Creation date:@Model.NewCompaniesList[j].DateCreate.ToShortDateString()
+                                </div>
+                            </div>
+                            }
+                        </div>
                     </div>
-                    <div class="col-1">
-                        <a href="#carouselNewCompany" class="carousel-controler-next" data-slide="next">  <button type="button" class="myButton wide">Next</button></a>
-                    </div>
+
+                }
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-2" style="max-width:150px">
+                    <a href="#carouselNewCompany" class="carousel-controler-prev" data-slide="prev"><button type="button" class="myButton wide">Prev</button></a>
+                </div>
+                <div class="col-2"style="max-width:150px">
+                    <a href="#carouselNewCompany" class="carousel-controler-next" data-slide="next">  <button type="button" class="myButton wide">Next</button></a>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
+
+    <div class="container-fluid" style="margin-top:50px;margin-bottom:100px">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <a href="Home/All"> <button class="myButton" style="width:100%;height:50px"> All Companies </button> </a>
+            </div>
+        </div>
+    </div>

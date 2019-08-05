@@ -1,0 +1,94 @@
+﻿@model IEnumerable<CompanyImage>
+@{
+    Layout = null;
+}
+@if ((ViewBag.Company.OwnerName == User.Identity.Name)||(User.IsInRole("admin")))
+{
+<form method="post" class="form-horizontal" asp-controller="Company" asp-action="AddImage" enctype="multipart/form-data">
+    <div>
+        <div class="form-group">
+            <div><input type="hidden" name="idCompany" value=@ViewBag.Company.Id>  </div>
+        </div>
+
+        <div class="form-group">
+
+            <input type="file" name="LoadedFile" class="form-control " accept="image/*,image/jpeg" required />
+        </div>
+        <div class="form-group">
+            <input class="myButton" type="submit" value="Add" style="width:10%" />
+        </div>
+
+    </div>
+</form>
+}
+<div class="container-fluid mt-5">
+    <div class="row">
+        @foreach (var image in Model)
+        {
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="@image.Img" class="fancybox" rel="ligthbox">
+                <img src="@image.Img" class="zoom img-fluid " alt="">
+            </a>
+            @if ((User.Identity.Name == ViewBag.OwnerName) || (User.IsInRole("admin"))) { 
+            <input style="width:100%;color:maroon" type="button" onclick="DellImage(@image.Id)" value="Dell Image" />
+            }
+        </div>
+        }
+
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+        <a href="https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="fancybox" rel="ligthbox">
+            <img src="https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="zoom img-fluid " alt="">
+        </a>
+
+
+    </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="fancybox" rel="ligthbox">
+                <img src="https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="zoom img-fluid" alt="">
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="https://images.pexels.com/photos/158827/field-corn-air-frisch-158827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="fancybox" rel="ligthbox">
+                <img src="https://images.pexels.com/photos/158827/field-corn-air-frisch-158827.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="zoom img-fluid " alt="">
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="https://images.pexels.com/photos/302804/pexels-photo-302804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="fancybox" rel="ligthbox">
+                <img src="https://images.pexels.com/photos/302804/pexels-photo-302804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="zoom img-fluid " alt="">
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="https://images.pexels.com/photos/1038914/pexels-photo-1038914.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="fancybox" rel="ligthbox">
+                <img src="https://images.pexels.com/photos/1038914/pexels-photo-1038914.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="zoom img-fluid " alt="">
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="fancybox" rel="ligthbox">
+                <img src="https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="zoom img-fluid " alt="">
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="fancybox" rel="ligthbox">
+                <img src="https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="zoom img-fluid " alt="">
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a href="https://klike.net/uploads/posts/2019-01/1547367999_1.jpg" class="fancybox" rel="ligthbox">
+                <img src="https://klike.net/uploads/posts/2019-01/1547367999_1.jpg" class="zoom img-fluid " alt="">
+            </a>
+        </div>
+
+
+
+
+    </div>
+    </div>
+
+
+

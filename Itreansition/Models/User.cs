@@ -10,9 +10,10 @@ namespace Itreansition.Models
     {
         public string Name { get; set; }
 
-        public short status { get; set; }
-        public uint Money { get; set; }
-        public short Rating { get; set; }
+        public bool Status { get; set; }
+        public string Avatar { get; set; } ="/img/ServerStaticImg/NonAvatarIMG.png";
+        public int Money { get; set; } public User() { this.Money = 1000000; }
+        public byte Rating { get; set; }
         public DateTime DateCheck { get; set; }
     }
 }

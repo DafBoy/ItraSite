@@ -1,0 +1,18 @@
+﻿@model  Company
+
+    <div class="row justify-content-center">
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+            <div class="row company-block-1 img-company" style="background-image:url(@Model.Logo);border-right:dotted;border-right-color:black;width:105%"></div>
+        </div>
+        <div class="col-12">
+            <h2 style="text-align:center"><strong>@Model.Name</strong></h2>
+        </div>
+        <div class="col-auto" style="text-align:center">
+            <h3>  @Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(Model.CurrentMoney)</h3>
+        </div>
+        <form method="post" class="form-horizontal" asp-controller="Company" asp-action="Dell" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id"  value=@Model.Id />
+            <input type="submit" class="myButton" style="color:red" value="Dell this Company" />
+        </form>
+        <div class="col-12" style="text-align:center;"><h1>All money from the company will be transferred to the owner’s account</h1></div>
+</div>

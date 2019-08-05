@@ -11,7 +11,14 @@ namespace Itreansition.Models
     {
 
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Vote> Votes { get; set; }
+        public DbSet<CompanyImage> CompanyImages { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<LikesComment> LikesComments { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Bonus> Bonuses { get; set; }
+
+        public DbSet<UserBonus> UserBonuses { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options)
             :base(options)
         {

@@ -1,0 +1,97 @@
+﻿@model Itreansition.ViewModels.SearchViewModel
+
+
+
+    <div class="container-fluid justify-content-center"style="padding-top:50px">
+        <div class="col-10">
+            <form class="form-inline mb-5" asp-controller="Search" asp-action="Index" enctype="multipart/form-data">
+                <input type="text" name="search" value="" style="width:80%;border-color:black" placeholder="Search" required class="form-control" />
+                <input type="submit" class="myButton form-control ml-1" name="name" value="Search" style="width:10%" />
+            </form>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3" style="text-align:end">
+                <h4 style="margin-top:15px">Found in:</h4>
+            </div>
+            <div class="col-3" style="min-width:500px">
+                <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-foundINcompanies-tab" data-toggle="pill" href="#pills-foundINcompanies" role="tab" aria-controls="pills-foundINcompanies" aria-selected="true" style="color:black"><h4>Company</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-foundINbonuses-tab" data-toggle="pill" href="#pills-foundINbonuses" role="tab" aria-controls="pills-foundINbonuses" aria-selected="false" style="color:black"><h4>Bonuses</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-foundINcomments-tab" data-toggle="pill" href="#pills-foundINcomments" role="tab" aria-controls="pills-foundINcomments" aria-selected="false" style="color:black"><h4>Comments</h4></a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </div>
+    </div>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-foundINcompanies" role="tabpanel" aria-labelledby="pills-home-tab">
+        <table style="width:100%">
+
+            <tr><th class="test1">Name Company</th><th class="test1">Owner Company Name</th><th class="test2">Number of matches</th></tr>
+            @if (@Model != null)
+            {
+                @foreach (var found in @Model.FoundInCompanies)
+                {
+
+
+                    <tr>
+                        <td><a href="Company?id=@found.company.Id" >@found.company.Name</a></td>
+                        <td><a href="Account?user=@found.company.OwnerName">@found.company.OwnerName</a> </td>
+                        <td>@found.Coincidences</td>
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
+    <div class="tab-pane fade" id="pills-foundINbonuses" role="tabpanel" aria-labelledby="pills-foundINbonuses-tab">
+        <table style="width:100%">
+            <tr><th class="test1">Name Company</th><th class="test1">Owner Company Name</th><th class="test2">Number of matches</th></tr>
+            @if (@Model != null)
+            {
+                @foreach (var found in @Model.FoundInBonuses)
+                {
+
+
+
+                    <tr>
+                        <td><a href="Company?id=@found.company.Id">@found.company.Name</a></td>
+                        <td><a href="Account?user=@found.company.OwnerName">@found.company.OwnerName</a> </td>
+                        <td>@found.Coincidences</td>
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
+    <div class="tab-pane fade" id="pills-foundINcomments" role="tabpanel" aria-labelledby="foundINcomments-tab">
+        <table style="width:100%">
+
+            <tr><th class="test1">Name Company</th><th class="test1">Owner Company Name</th><th class="test2">Number of matches</th></tr>
+            @if (@Model != null)
+            {
+                @foreach (var found in @Model.FoundInComments)
+                {
+
+
+
+                    <tr>
+                        <td><a href="Company?id=@found.company.Id">@found.company.Name</a></td>
+                        <td><a href="Account?user=@found.company.OwnerName">@found.company.OwnerName</a> </td>
+                        <td>@found.Coincidences</td>
+                    </tr>
+
+                }
+            }
+        </table>
+    </div>
+</div>
+

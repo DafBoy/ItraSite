@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Comment>
+@{
+    Layout = null;
+}
+
+
+
+
+
+@foreach (var comment in Model)
+{
+
+    <div class="p-1 m-auto  borderRidge" style="background:#E3E4E6;width:80%;">
+        <div class="row container-fluid ">
+            <div class="col flex-column" style="border:groove;border-width:5px; min-height:200px;min-width:200px;max-width:200px;background-color:whitesmoke">
+                <div style="height:30%"><h4 style="text-align:center"><i class="fa fa-comment"> User @comment.OwnerName</i></h4></div>
+                <div style="height:30%" ><p class="date" style="text-align:center"> @comment.Date</p></div>
+                <div class="row ">
+                    <div class="col-6">
+                        <a class="btn" onclick="setLike(@comment.Id,true)" ><img class="flex" src="~/img/Likes/like.png" alt="Alternate Text"style="width:80%" />@comment.Like</a>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn" onclick="setLike(@comment.Id,false)"><img src="~/img/Likes/disLike.png" alt="Alternate Text" style="width:80%" />@comment.Dislike</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <text style="word-break:break-all">@comment.Text</text>
+            </div>
+        </div>
+    </div>
+    <div style="min-height:20px;"></div>
+}
+<div style="min-height:200px;"></div>
+
+<div class="container-fluid" style="position: fixed;bottom:0; background-color:ghostwhite;height:200px">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
+        <div class="form-group row">
+            <div class="col-10">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-2">
+                <button onclick="SendComment()" style="width:90%;height:90%" class="myButton"><i class="fa fa-reply"></i> Send </button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-12"style="text-align:center;margin-top:3%">
+            <a href="/Account/Login"> <h3>Login or register to post comments
+</h3></a>
+        </div>
+    }
+
+</div>
+
+
+
+
+
+
+

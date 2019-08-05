@@ -1,4 +1,4 @@
-﻿@model Company
+﻿@model Itreansition.ViewModels.RegisterCompanyModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -10,8 +10,16 @@
             <div class="card-header">Create Company</div>
             <div class="card-body">
 
-                <form class="form-horizontal" asp-controller="Company" asp-action="Create">
+                <form method="post" class="form-horizontal" asp-controller="Company" asp-action="Create" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="OwnerName" value="@ViewBag.Name" />
+                    <div class="form-group row justify-content-center">
+                        <div class="col-4">
+                            <div class="row company-block-1 img-company" id="EditImg" style="background-image:url();border-style:dashed;width:105%">
+                                <input type='file' id="StreamImg" name="LoadedFile" style="width:100%" />
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="Name" class="cols-sm-2 control-label">Name</label>
                         <div class="cols-sm-10">
@@ -32,9 +40,9 @@
                     </div>
                     <div class="form-group">
                         <label for="BrieflyAbout" class="cols-sm-2 control-label">BrieflyAbout</label>
-                        <div class="cols-sm-10"style="height:100px">
+                        <div class="cols-sm-10" style="height:100px">
                             <div class="input-group">
-                                <textarea  class="form-control" style="height:100px" asp-for="BrieflyAbout" ></textArea>
+                                <textarea class="form-control" style="height:100px" asp-for="BrieflyAbout"></textarea>
                             </div>
                             <span asp-validation-for="BrieflyAbout"></span>
                         </div>
@@ -44,11 +52,15 @@
 
                         <div class="cols-sm-10">
                             <div class="input-group">
-                                <textarea class="form-control" asp-for="About" ></textArea>
+                                <textarea class="form-control" asp-for="About" style="height:200px"></textarea>
                             </div>
                             <span asp-validation-for="About"></span>
                         </div>
+                        <div>
+
+                        </div>
                     </div>
+
                     <div class="form-group ">
 
                         <input type="submit" value="Create" class="myButton  btn-lg btn-block login-button" />

@@ -2,176 +2,218 @@
 @{
     ViewBag.Title = Model.AccountUser.Name;
 }
+@*---------------------User page header-------------------------------------------*@
 
-    <div class="row" style="min-height:150px;">
-        <div class="d-flex flex-lg-column flex-sm-row align-self-center ml-5">
-            <div><p class="font-weight-bold h3">Ваш баланс:</p><p>@Model.AccountUser.Money</p></div>
-            <div><a href="#"><p><small>Пополнить баланс</small></p></a></div>
+<div class="row justify-content-center row">
+    <div>
+        <form method="post" class="form-horizontal" asp-controller="Account" asp-action="ChangeAvatar" enctype="multipart/form-data">
+            <input type='file' id="StreamImg" name="LoadedFile" style="width:0%" />
+            <a class='btn col-12' id="btnAvatar">
+                <input type="hidden" name="userName" value="@Model.AccountUser.UserName" />
+                <img class="rounded-circle img-responsive img-company" id="EditImg" src='@Model.AccountUser.Avatar' style="width:250px; height:250px">
+            </a>
+            <div class="col-6 row m-auto">
+                <div class="col-6">
+                    <input type="hidden" class="myButton" id="buttonAvatarSave" value="Save Avatar" style="width:100%" />
+                </div>
+                <div class="col-6">
+                    <input type="hidden" class="myButton" id="buttonAvatarCancell" value="Cancell" style="width:100%" onclick="location.href='Account?user=@Model.AccountUser.UserName';" />
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-between">
+    <div class="col-xl-3 col-lg-3 ml-xl-5 col-md-6 col-sm-12 ml-lg-5 ml-md-5" style="text-align:center">
+        <p class="font-weight-bold h1">@Model.AccountUser.UserName</p>
+        <p>Email : <strong>@Model.AccountUser.Email</strong></p>
+        <p>Phone: <strong>@Model.AccountUser.PhoneNumber</strong></p>
+        <p>Date : <strong>@Model.AccountUser.DateCheck.ToShortDateString()</strong>  </p>
+    </div>
+    @if (User.Identity.Name == Model.AccountUser.UserName || User.IsInRole("admin"))
+    {
+<div class="col-xl-3 col-lg-3 col-md-5 col-sm-12" style="text-align:center">
+
+    <p class="font-weight-bold h1">Account balance </p>
+    <p class="h4"><strong>@Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(Model.AccountUser.Money)</strong></p>
+    <br>
+    <form asp-controller="Account" asp-action="AddMoney" method="post">
+        <input type="hidden" name="userName" value=@Model.AccountUser.UserName />
+         <input type="submit" class="myButton" name="name" value="Eplenish the balance" />
+    </form>
+</div>
+    }
+</div>
+
+
+@*---------------------User page header-------------------------------------------*@
+
+@if (User.Identity.Name == Model.AccountUser.UserName || User.IsInRole("admin"))
+{
+    <div class="row justify-content-center mb-5">
+        <div class="col-3" style="text-align:center">
+            <a type="button" class="myButton" href="~/Company/Create?user=@Model.AccountUser.UserName" style="width:100%;min-height:50px"><p class="h3" style="color:whitesmoke">New Company</p></a>
         </div>
-        <div class="d-flex d-flex flex-lg-column flex-sm-row  align-self-center ml-lg-auto ml-5" style="width:200px;">
-            <div class="row">
+    </div>
+}
+<div class="row justify-content-center">
 
-                <div class="col-8"><p class="text-left font-weight-bold h3">@Model.AccountUser.UserName</p></div>
-                <div class="row ml-auto" ><a href="~/Account/Setting"><p class="text-left"><small>Настройки</small></p></a> </div>
+    <div class="col-10">
+        <div class="d-flex flex-column aligin-self-center" style="min-height:1700px;">
+            <div class="d-flex flex-rowe" style="height:200px;">
                 <div class="col-4">
-                    <p>Email:@Model.AccountUser.Email</p>
-                    <p>Data:@Model.AccountUser.DateCheck.ToShortDateString()</p>
+                    <button class="myButton" type="button" data-toggle="collapse" data-target="
+            #collapseMyCompany" aria-controls="collapseMyCompany" style="width:100%">
+                        <div>
+                            <p class="font-weight-bold h3" style="color:whitesmoke">
+                                @if (User.Identity.Name == Model.AccountUser.UserName)
+                                {<strong>My</strong>}<br>Projects
+                            </p>
+                        </div>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button class="myButton" type="button" data-toggle="collapse" data-target="
+          #collapseBonuses" aria-controls="collapseBonuses" style="width:100%">
+                        <div>
+                            <p class="font-weight-bold h3" style="color:whitesmoke">
+                                @if (User.Identity.Name == Model.AccountUser.UserName)
+                                {<strong>My</strong>}<br>Bonuses
+                            </p>
+                        </div>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button class="myButton" type="button" data-toggle="collapse" data-target="
+          #collapseProgress" aria-controls="collapseProgress" style="width:100%">
+                        <div>
+                            <p class="font-weight-bold h3" style="color:whitesmoke">
+                                @if (User.Identity.Name == Model.AccountUser.UserName)
+                                {<strong>My</strong>}<br>Achievements
+                            </p>
+                        </div>
+                    </button>
                 </div>
             </div>
+
+
+            <div class="collapse show container-fluid" id="collapseMyCompany">
+                @foreach (var company in Model.ListCompany)
+                {
+
+                    <div class="card m-auto" style="min-height:200px;min-width:200px;max-width:100%;">
+                        <div class="row no-gutters">
+
+                            <div class="col-xl-3 col-lg-3 col-md-12 col-ms-12">
+                                <div class="company-block-1 img-company" style="background-image:url(@company.Logo);border-right:dotted;border-right-color:black;width:100%;height:auto">
+                                </div>
+                            </div>
+                            <div class="col-xl-7 col-lg-7 col-md-12 col-ms-12">
+                                <div class="card-block px-3">
+                                    <a href="/Company?id=@company.Id"><h4 class="card-title">@company.Name</h4></a>
+                                    <p class="card-text m-auto">@company.BrieflyAbout</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-1 col-lg-1 col-md-12 col-ms-12">
+                                <button class="myButton"><a href="/Company/Dell?id=@company.Id" style="color:whitesmoke">Dell</a></button>
+                            </div>
+                        </div>
+                        <div class="card-footer w-100">
+                            <div style="width:100%; text-align:center">
+                                @Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(company.CurrentMoney) /@Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(@company.NeedMoney)
+                            </div>
+                            <div class="progress" style="height: 25px;">
+                                <div class="progress-bar placement-bar" role="progressbar" style="width:@company.GetPercentAmount()%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+            <div class="collapse" id="collapseBonuses">
+                @foreach (var bonus in Model.ListUserBonus)
+                {
+                    <div class="container-fluid m-auto borderRidge" style="width:70%">
+                        <div class="row" style="width:100%;height:200px">
+                            <div class="col-4 img-company" style="border-right-style:dashed;background-image:url(@bonus.Image)">
+                            </div>
+                            <div class="col-8" style="text-align:center">
+                                <strong>@bonus.Description</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <Strong>@bonus.BonusName </Strong>
+                            </div>
+                            <div class="col-8" style="text-align:left">
+                                <Strong>Cost: @bonus.Sum$</Strong>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="collapse container-fluid" id="collapseProgress">
+                @*Вывод достижений пользователя*@
+                <div class="row justify-content-center">
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.Shot)
+                        {<img class="img-fluid" src="~/img//Achievment/done/Shot.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/Shot.png" alt="Alternate Text" />}
+                    </div>
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.Closer)
+                        {<img class="img-fluid" src="~/img//Achievment/done/Closer.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/Closer.png" alt="Alternate Text" />}
+                    </div>
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.Сheckmate)
+                        {<img class="img-fluid" src="~/img//Achievment/done/Сheckmate.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/Сheckmate.png" alt="Alternate Text" />}
+                    </div>
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.MrPiggyBank)
+                        {<img class="img-fluid" src="~/img//Achievment/done/MrPiggyBank.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/MrPiggyBank.png" alt="Alternate Text" />}
+                    </div>
+                </div>
+
+                <div class="row mt-5 justify-content-center">
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.MrLiker)
+                        {<img class="img-fluid" src="~/img//Achievment/done/MrLiker.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/MrLiker.png" alt="Alternate Text" />}
+                    </div>
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.Critic)
+                        {<img class="img-fluid" src="~/img//Achievment/done/Critic.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/Critic.png" alt="Alternate Text" />}
+                    </div>
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.Judge)
+                        {<img class="img-fluid" src="~/img//Achievment/done/Judge.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/Judge.png" alt="Alternate Text" />}
+                    </div>
+                    <div class="col-3" style="max-width:250px; max-height:250px">
+                        @if (Model.AchievementUser.Saint)
+                        {<img class="img-fluid" src="~/img//Achievment/done/Saint.png" alt="Alternate Text" />}
+                        else
+                        { <img class="img-fluid" src="~/img//Achievment/dont/Saint.png" alt="Alternate Text" />}
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-
     </div>
-    <div class="row justify-content-center mb-5">
-        <a href="~/Company/Create">New Company</a>
-     </div>
-
-        <div class="row justify-content-center">
-
-            <div class="col-10">
-                <div class="d-flex flex-column aligin-self-center" style=" height:1700px;">
-                    <div class="d-flex flex-rowe" style="height:200px;">
-                        <div class="col-4">
-                            <button class="wide" type="button" data-toggle="collapse" data-target="
-            #collapseMyCompany" aria-controls="collapseMyCompany">
-                                <img src='img\myProjectIconpng.png' class="img-fluid"><br>
-                                <div><p class="font-weight-bold h3">My<br>Projects</p></div>
-                            </button>
-                        </div>
-                        <div class="col-4">
-                            <button class="wide" type="button" data-toggle="collapse" data-target="
-          #collapseInvestmentСompany" aria-controls="collapseInvestmentСompany">
-                                <img src='img\InvestProjectIcon.png' class="img-fluid"><br>
-                                <div><p class="font-weight-bold h3">Supported<br>Projects</p></div>
-                            </button>
-                        </div>
-                        <div class="col-4">
-                            <button class="wide" type="button" data-toggle="collapse" data-target="
-          #collapseProgress" aria-controls="collapseProgress">
-                                <img src='img\myAchievementsIcon.png' class="img-fluid"><br>
-                                <div><p class="font-weight-bold h3">My<br>Achievements</p></div>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="collapse" id="collapseMyCompany">
-                        @foreach (var company in Model.ListCompany)
-                        {
-
-
-                            <div class="m-5" style="height:220px;">
-                                <div class="card" style="height:200px;">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <img src=@company.Logo class="img-fluid" style="height:200px; min-width:300px">
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-block px-2">
-                                                <h4 class="card-title">@company.Name</h4>
-                                                <p class="card-text">@company.BrieflyAbout</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer w-100 text-muted">
-                                        ТУт будет прогрес бар
-                                    </div>
-                                </div>
-                            </div>
-
-                        }
-                    </div>
-                        <div class="collapse" id="collapseInvestmentСompany">
-                            <div class="m-5" style="height:220px;">
-                                <div class="card" style="height:200px;">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <img src="img\test.jpg" class="img-fluid" style="height:200px; min-width:300px">
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-block px-2">
-                                                <h4 class="card-title">Name company</h4>
-                                                <p class="card-text">Создание первого в России детского научно-популярного комикса про историю и теорию театра кукол "Дима и Лина в закулисье: Как устроен театр кукол</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer w-100 text-muted">
-                                        ТУт будет прогрес бар
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-5" style="height:220px;">
-                                <div class="card" style="height:200px;">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <img src="img\test.jpg" class="img-fluid" style="height:200px; min-width:300px">
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-block px-2">
-                                                <h4 class="card-title">Name company</h4>
-                                                <p class="card-text">Создание первого в России детского научно-популярного комикса про историю и теорию театра кукол "Дима и Лина в закулисье: Как устроен театр кукол</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer w-100 text-muted">
-                                        ТУт будет прогрес бар
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" m-5" style="height:220px;">
-                                <div class="card" style="height:200px;">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <img src="img\test.jpg" class="img-fluid" style="height:200px; min-width:300px">
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-block px-2">
-                                                <h4 class="card-title">Name company</h4>
-                                                <p class="card-text">Создание первого в России детского научно-популярного комикса про историю и теорию театра кукол "Дима и Лина в закулисье: Как устроен театр кукол</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer w-100 text-muted">
-                                        ТУт будет прогрес бар
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-5" style="height:220px;">
-                                <div class="card" style="height:200px;">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <img src="img\test.jpg" class="img-fluid" style="height:200px; min-width:300px">
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-block px-2">
-                                                <h4 class="card-title">Name company</h4>
-                                                <p class="card-text">Создание первого в России детского научно-популярного комикса про историю и теорию театра кукол "Дима и Лина в закулисье: Как устроен театр кукол</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer w-100 text-muted">
-                                        ТУт будет прогрес бар
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-5" style="height:220px;">
-                                <div class="card" style="height:200px;">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <img src="img\test.jpg" class="img-fluid" style="height:200px; min-width:300px">
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-block px-2">
-                                                <h4 class="card-title">Name company</h4>
-                                                <p class="card-text">Создание первого в России детского научно-популярного комикса про историю и теорию театра кукол "Дима и Лина в закулисье: Как устроен театр кукол</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer w-100 text-muted">
-                                        ТУт будет прогрес бар
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="collapse" id="collapseProgress">
-                            <p class="card-text">Создание первого в России детского научно-популярного комикса про историю и теорию театра кукол "Дима и Лина в закулисье: Как устроен театр кукол</p>
-                            <p class="card-text">Создание первого в России детского научно-популярного комикса про историю и теорию театра кукол "Дима и Лина в закулисье: Как устроен театр кукол</p>
-                        </div>
+</div>

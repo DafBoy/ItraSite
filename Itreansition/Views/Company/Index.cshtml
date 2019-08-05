@@ -1,0 +1,83 @@
+﻿@model Itreansition.ViewModels.CompanyModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<input name="idCompany" type="hidden" value=@Model.CurrentCompany.Id>
+<input name="userName" type="hidden" value="@User.Identity.Name">
+<div class="container-fluid">
+    <div class="row" style="background-color:whitesmoke">
+        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+            <div class="row company-block-1 img-company" style="background-image:url(@Model.CurrentCompany.Logo);border-right:dotted;border-right-color:black;width:105%"></div>
+        </div>
+
+        <div class="col-xl-4 col-lg-6 col-md-12-col-sm-12  row" style="width:100%">
+
+            <div class="col-12 row mb-3 ml-0">
+                <div class="col-12" style="height:30%">
+                    <a href="/Company/Donnate?=@Model.CurrentCompany.Id">
+                        <button class="myButton mb-auto" style="width:100%;height:100%; transform: skew(0deg);">
+                            <p class="h3" style="color:whitesmoke">Support Project</p>
+                        </button><br>
+                    </a>
+                </div>
+                <div class="col-12" style="text-align:center">
+                    <h2> <strong> @Model.Procent % </strong></h2>
+
+                </div>
+                <div class="col-12">
+                    <div class="col-auto" style="text-align:center">
+                        <h3>  @Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(Model.CurrentCompany.CurrentMoney)</h3>
+
+                        <h4>from</h4>
+
+                        <h4> @Itreansition.Services.HomeSevice.FunctionHelpers.ConvertToUSD(Model.CurrentCompany.NeedMoney)</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12  row" style="width:100%;height:auto;border-left:dotted;border-left-color:black;">
+            <div class="col-12">
+                <h2 style="text-align:center;color:#4C2C12"><strong>@Model.CurrentCompany.Name</strong></h2>
+            </div>
+            <div class="col-12">
+                <strong>@Model.CurrentCompany.BrieflyAbout</strong>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div>
+    <div class="btn-group btn-group-toggle container-fluid" data-toggle="buttons" style="position:sticky;top:60px;z-index:100">
+        <label class="btn btn-secondary active">
+            <input type="radio" name="options" onchange="ShowAbout()" id="optionAbout" autocomplete="off" checked> About
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" onchange="ShowGallery()" id="option2" autocomplete="off"> Gallery
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" onchange="ShowBonuses()" id="option3" autocomplete="off"> Bonuses
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" onchange="UpdateComments()" name="options" id="option4" autocomplete="off"> Comments
+        </label>
+    </div>
+
+
+
+    <div class="form-group" id="CommentsBlock"></div>
+
+
+
+</div>
+<script>
+        
+    $(document).ready(function () {
+
+        ShowAbout()
+
+    });
+</script>
